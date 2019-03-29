@@ -1,4 +1,4 @@
-"""A program that take English words and return its definition in English"""
+"""A program that takes English words and returns its definition in English"""
 
 # importing the json library to load the dictionary file
 import json
@@ -18,8 +18,7 @@ def search(word):
     If yes, return the definition of the word. If no, check if there're any close match and return the definition of the closest match.
     Or return a "The word doesn't exist. Please double check it." message"""
 
-    # making the program letter case insensitive
-    word = word.lower()
+    word = word.lower() # making the program letter case insensitive
 
     if word in data: # check if the user's input is in the dictionary file
         return data[word] # return the definition of the word
