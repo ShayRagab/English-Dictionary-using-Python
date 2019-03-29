@@ -1,7 +1,8 @@
 """A program that take English words and return its definition in English"""
 
-# Improting the json library to load the dictionary file
+# importing the json library to load the dictionary file
 import json
+# importing get_close_matches from difflib to check for close matches when the word doesn't exist
 from difflib import get_close_matches
 
 # Loading the dictionary file
