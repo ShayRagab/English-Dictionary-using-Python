@@ -21,32 +21,35 @@ def search(word):
     # making the program letter case insensitive
     word = word.lower()
 
-    # check if the user's input is in the dictionary file
-    if word in data:
-        # return the definition of the word
-        return data[word]
+    if word in data: # check if the user's input is in the dictionary file
+        return data[word] # return the definition of the word
 
-    # if the word is not in the dictionary file, check if there're any close matches
-    elif len(get_close_matches(word, data.keys())) > 0: #incase any close matches found
+    elif word.upper() in data: # check for names such as USA and NATO
+        return data[word.upper()] #returns the definition
+
+    elif word.title() in data: # check for cities/states names that start with a capital letter
+        return data[word.title()] #returns the definition
+
+    elif len(get_close_matches(word, data.keys())) > 0: # check if there're any close matches
         #ask the user if the closest match is what was meant
         find_match = input(f"Do you mean {get_close_matches(word, data.keys())[0]}? if yes enter Y if no enter N: ")
-        #if the answer is yes
 
-        if find_match.upper() == "Y":
-            #return the definition of the closest match
-            return data[get_close_matches(word, data.keys())[0]]
+        if find_match.upper() == "Y": #if the answer is yes
+            return data[get_close_matches(word, data.keys())[0]] #return the definition of the closest match
 
-        #if the answer is no
-        elif find_match.upper() == "N":
-            #return a message to the user
-            return "The word doesn't exist. Please double check it."
+        elif find_match.upper() == "N": #if the answer is no
+            return "The word doesn't exist. Please double check it." #return a message to the user
 
-        #if the answer is not a y or n, return a message to the user
-        return "We didn't understand your entry."
+        return "We didn't understand your entry." #if the answer is not a y or n, return a message to the user
 
-    # if the word is not in the dictionary file and there're no close matches, return a message to the user
-    return word + " doesn't exist"
+    return word + " doesn't exist" # if the word is not in the dictionary file and no close matches found
 
+# setting the output of the search() function into a variable
+output = search(word)
 
-# Calling the function and printing out the returned value
-print(search(word))
+# Prints every item of the search() function output into a seperate line
+if type(output) == list: # check if the output is a list
+    for item in output: # for every item in the output list print the item
+        print(item)
+else: # if the output is not a list, print the output
+    print(output)
